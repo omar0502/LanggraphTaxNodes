@@ -2,7 +2,7 @@
 
 A lightweight **tax validation microservice** that executes a LangGraph workflow of controls (mandatory fields, POS, VAT checks, rate/recoverability, and invoice comparison), with a simple **Human-in-the-Loop** remediation and a **REST API**.
 
-## ✨ What it does
+## What it does
 - Validates a transaction/invoice JSON through a series of tax controls
 - Auto-remediates common issues (demo HITL) and resumes the failed step
 - Returns: pass/fail, confidence, calculated vs supplier tax, POS region, full trace
@@ -11,12 +11,12 @@ A lightweight **tax validation microservice** that executes a LangGraph workflow
   - `POST /explain` → human summary + full report
   - `POST /batch` → validate multiple items
 
-## 🧱 Tech
+## Tech
 - **LangGraph** for the stateful workflow
 - **FastAPI** for the REST API
 - Pure Python (no external LLM calls yet)
 
-## 📦 Install
+## Install
 
 ```bash
 # Clone
