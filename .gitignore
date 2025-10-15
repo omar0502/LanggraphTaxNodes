@@ -1,5 +1,26 @@
-﻿.venv/
-.env
+﻿# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
+*.egg
+*.log
+
+# Virtual env
+.venv/
+env/
+venv/
+
+# IDEs
 .idea/
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment / config
+.env
+.env.*
