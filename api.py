@@ -1,12 +1,20 @@
 # api.py
-# pip install fastapi uvicorn
+# pip install fastapi uvicorn xmltodict
 
-from fastapi import FastAPI, Body
+import xmltodict
+from fastapi import FastAPI, Body, File, UploadFile
 from pydantic import BaseModel, Field
 from typing import Any, Dict, List, Optional
 from tax_graph import run_tax_validation, explain_result
+from xml_utils import map_xml_to_tx  # <-- NEW
 
-app = FastAPI(title="Tax Validation Agent API", version="0.2.0")
+app = FastAPI(title="Tax Validation Agent API", version="0.3.0")
+
+# (optional) auto-redirect "/" -> "/docs"
+from fastapi.responses import RedirectResponse
+@app.get("/", include_in_schema=False)
+def root():
+    return RedirectResponse("/docs")
 
 class ValidateRequest(BaseModel):
     tx: Dict[str, Any] = Field(..., description="Transaction payload (invoice/document)")
@@ -43,6 +51,15 @@ def explain(req: ValidateRequest):
     report = run_tax_validation(req.tx, req.ctx or {})
     summary = explain_result(report)
     return {"summary": summary, "report": report}
+
+# -------- XML endpoint (NEW) --------
+@app.post("/validate/xml", response_model=ValidateResponse)
+async def validate_xml(file: UploadFile = File(...)):
+    content = await file.read()
+    doc = xmltodict.parse(content)
+    tx = map_xml_to_tx(doc)
+    ctx = {"rate_table": {"DE": 0.19}, "tolerance": 0.01}
+    return run_tax_validation(tx, ctx)
 
 if __name__ == "__main__":
     import uvicorn
