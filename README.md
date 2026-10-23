@@ -1,3 +1,5 @@
+![tests](https://github.com/omar0502/LanggraphTaxNodes/actions/workflows/tests.yml/badge.svg)
+
 # LangGraph Tax Validation Agent
 
 A tax validation microservice that runs an invoice through a **LangGraph** workflow of indirect tax controls and exposes it through a **FastAPI** REST API.
