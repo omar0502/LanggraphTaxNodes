@@ -1,0 +1,17 @@
+{
+  "tx": {
+    "entity_id": "DE01",
+    "country": "DE",
+    "net_amount": 1000,
+    "supplier_tax": 190,
+    "ship_to_country": "DE",
+    "supplier_country": "DE",
+    "doc_date": "2025-10-13",
+    "currency": "EUR",
+    "supplier_id": "S1"
+  },
+  "ctx": {
+    "rate_table": { "DE": 0.19 },
+    "tolerance": 0.01
+  }
+}
