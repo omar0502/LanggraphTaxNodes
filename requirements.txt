@@ -5,3 +5,4 @@ langchain-core==1.7.0
 pydantic==2.14.1
 xmltodict==1.0.4
 python-multipart==0.0.32
+duckdb==2.0.0
